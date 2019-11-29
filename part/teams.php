@@ -21,6 +21,7 @@
                                 if( !empty( $image ) ): ?>
                                     <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                                 <?php endif; ?>
+                                
                                 <div class="infos">
                                     <?php if( get_field('nom_equipe') ): ?>
                                         <h4 class="nom"><?php the_field('nom_equipe'); ?></h4>
