@@ -1,0 +1,26 @@
+%ttr{
+    font-family: $font;
+    font-size: 34px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #1f2f49;
+    @include media-breakpoint-down(sm) {
+        font-size: 19px;
+        font-weight: 600;
+    }
+}
+%sttr{
+    font-family: $font;
+    color: $primary;
+    font-size: 21px;
+    font-weight: 500;
+    font-style: normal;
+    margin-bottom: 20px;
+    @include media-breakpoint-down(sm) {
+        font-size: 16px;
+        .inf{
+            display: block;
+        }
+    }
+}
