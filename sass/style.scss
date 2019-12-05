@@ -57,6 +57,7 @@ body{
                 color: #FFF;
                 padding-left: 0;
                 padding-right: 0;
+                text-transform: uppercase;
                 transition: all .3s ease-in-out;
                 &:hover{
                     border-bottom: 2px solid $primary;  
@@ -444,8 +445,44 @@ body{
                     border-bottom-right-radius: 15px;
                     border-bottom-left-radius: 15px;
                 }
+                .wpcf7-form-control-wrap {
+                    position: relative;
+                    width: 100%;
+                    display: block;
+                }
+                div.wpcf7-mail-sent-ok{
+                    border: 2px solid #57c329;
+                    border-radius: 20px;
+                    text-align: center;
+                    background: #9fe082;
+                    color: #08631c;
+                }
+                div.wpcf7-validation-errors, div.wpcf7-acceptance-missing{
+                    border: 2px solid #f7e700;
+                    text-align: center;
+                    border-radius: 20px;
+                    background: #f9f296;
+                }
+                span.wpcf7-not-valid-tip {
+                    color: #f00;
+                    font-size: 1em;
+                    font-weight: normal;
+                    display: block;
+                    position: absolute;
+                    z-index: 9;
+                    width: auto;
+                    background: #08080836;
+                    bottom: 0;
+                    right: 0;
+                    padding: 0 5px;
+                    border-radius: 5px 5px 0 0;
+                }
                 .input-group{
                     margin-bottom: 15px;
+                    p{
+                        margin: 0;
+                        width: 94%;
+                    }
                     .form-control{
                         border-radius: 0;
                         border: none;
