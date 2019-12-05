@@ -208,7 +208,7 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
             'has_archive' => true,
             'supports' => array( 'title'),
             'menu_position' => 5, 
-            'menu_icon' => 'dashicons-clipboard',
+            'menu_icon' => 'dashicons-format-gallery',
         );
     
         register_post_type( 'slide', $args );
@@ -229,7 +229,7 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
             'show_in_rest' => true,
             'has_archive' => true,
             'supports' => array( 'title'),
-            'menu_position' => 5, 
+            'menu_position' => 6, 
             'menu_icon' => 'dashicons-clipboard',
         );
     
@@ -251,7 +251,7 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
             'show_in_rest' => true,
             'has_archive' => true,
             'supports' => array( 'title'),
-            'menu_position' => 5, 
+            'menu_position' => 7, 
             'menu_icon' => 'dashicons-layout',
         );
     
@@ -273,7 +273,7 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
             'show_in_rest' => true,
             'has_archive' => true,
             'supports' => array( 'title'),
-            'menu_position' => 5, 
+            'menu_position' => 8, 
             'menu_icon' => 'dashicons-buddicons-buddypress-logo',
         );
     
@@ -295,8 +295,8 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
             'show_in_rest' => true,
             'has_archive' => true,
             'supports' => array( 'title'),
-            'menu_position' => 5, 
-            'menu_icon' => 'dashicons-admin-site',
+            'menu_position' => 9, 
+            'menu_icon' => 'dashicons-phone',
         );
     
         register_post_type( 'contact', $args );        
@@ -317,8 +317,8 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
             'show_in_rest' => true,
             'has_archive' => true,
             'supports' => array( 'title'),
-            'menu_position' => 5, 
-            'menu_icon' => 'dashicons-buddicons-buddypress-logo',
+            'menu_position' => 10, 
+            'menu_icon' => 'dashicons-editor-help',
         );
     
         register_post_type( 'qui-sommes-nous', $args );
@@ -338,9 +338,22 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
     }
     add_action( 'init', 'register_my_menus' );
 
-    // Method 1: Filter.
-    // function my_acf_google_map_api( $api ){
-    //     $api['key'] = 'AIzaSyDheFmNsGKyyE5l9Uz3iB9BjcLKA6zf7mw';
-    //     return $api;
-    // }
-    // add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+    // Supprimer les notifications de thèmes update
+	remove_action('load-update-core.php', 'wp_update_themes');
+	add_filter('pre_site_transient_update_themes', create_function('$a', "return null;"));
+
+	// Supprimer les notifications de plugins
+	remove_action('load-update-core.php', 'wp_update_plugins');
+    add_filter('pre_site_transient_update_plugins', create_function('$a', "return null;"));
+    
+    function remove_menu_items() {
+        global $menu;
+        $restricted = array(__('Posts'), __('Pages'), __('Comments'), __('Plugins'), __('Links'), __('Media'), __('Tools'), __('Users'));
+        end ($menu);
+        while (prev($menu)) {
+            $value = explode(' ',$menu[key($menu)][0]);
+            if(in_array($value[0] != NULL?$value[0]:"" , $restricted)) {
+                unset($menu[key($menu)]);}
+        }
+    }
+    add_action('admin_menu', 'remove_menu_items');

@@ -59,43 +59,33 @@
                                 <div class="content">
                                     <div class="carousel-header">
 
-                                        <div class="slide-item">
-                                            <img class="d-block m-auto w-100" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
-                                            <div class="caption">
-                                                <h1 class="ttr">Lorem, ipsum dolor 1.</h1>
-                                                <h2 class="sttr">Consectetur adipisicing 1</h2>
-                                            </div>
-                                            <a href="#" class="btn-primary btn">Voir plus <i class="fa fa-plus"></i></a>
-                                            <a href="#" class="btn-secondary btn">Contact</a>
-                                        </div>
+                                    <?php $loop = new WP_Query( array( 'post_type' => 'slide', 'posts_per_page' => '1' ) ); ?>
+                                    <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+                                    
+                                        <?php if( have_rows('slide_header') ): ?>
+                                            <?php while( have_rows('slide_header') ): the_row(); 
+                                                        // vars
+                                                $imgSlideHome = get_sub_field('img_slide_header');
+                                                $tSlideHome = get_sub_field('titre_slide_home');
+                                                $stSlideHome = get_sub_field('sous_titre_slide_home');
+                                                        
+                                                if( !empty( $imgSlideHome ) ): ?>
+                                                    <div class="slide-item">
+                                                        <img src="<?php echo esc_url($imgSlideHome['url']); ?>" alt="<?php echo esc_attr($imgSlideHome['alt']); ?>" />
+                                                        <div class="caption">
+                                                            <h1 class="ttr"><?php echo $tSlideHome; ?></h1>
+                                                            <h2 class="sttr"><?php echo $stSlideHome; ?></h2>
+                                                        </div>
+                                                        <a href="#" class="btn-primary btn">Voir plus <i class="fa fa-plus"></i></a>
+                                                        <a href="#" class="btn-secondary btn">Contact</a>
+                                                    </div>
+                                                <?php endif; ?>
 
-                                        <div class="slide-item">
-                                            <img class="d-block m-auto w-100" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
-                                            <div class="caption">
-                                                <h1 class="ttr">Lorem, ipsum dolor 2.</h1>
-                                                <h2 class="sttr">Consectetur adipisicing 2</h2>
-                                            </div>
-                                            <a href="#" class="btn-primary btn">Voir plus <i class="fa fa-plus"></i></a>
-                                            <a href="#" class="btn-secondary btn">Contact</a>
-                                        </div>
-                                        <div class="slide-item">
-                                            <img class="d-block m-auto w-100" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
-                                            <div class="caption">
-                                                <h1 class="ttr">Lorem, ipsum dolor. 3</h1>
-                                                <h2 class="sttr">Consectetur adipisicing 3</h2>
-                                            </div>
-                                            <a href="#" class="btn-primary btn">Voir plus <i class="fa fa-plus"></i></a>
-                                            <a href="#" class="btn-secondary btn">Contact</a>
-                                        </div>
-                                        <div class="slide-item">
-                                            <img class="d-block m-auto w-100" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
-                                            <div class="caption">
-                                                <h1 class="ttr">Lorem, ipsum dolor. 4</h1>
-                                                <h2 class="sttr">Consectetur adipisicing 4</h2>
-                                            </div>
-                                            <a href="#" class="btn-primary btn">Voir plus <i class="fa fa-plus"></i></a>
-                                            <a href="#" class="btn-secondary btn">Contact</a>
-                                        </div>
+                                            <?php endwhile; ?>
+                                        <?php endif; ?>
+
+                                    <?php endwhile; wp_reset_query(); ?>
+
                                     </div>
                                 </div>
                             </div>

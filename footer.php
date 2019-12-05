@@ -26,7 +26,7 @@
                                 <p class="para"><i class="fa fa-envelope"></i> <?php the_field('mail_contact'); ?></p>
                             <?php endif; ?>                            
 
-                        <?php endwhile; wp_reset_query(); ?>
+                            <?php endwhile; wp_reset_query(); ?>
                         
                         </div>
 
