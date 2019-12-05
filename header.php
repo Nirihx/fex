@@ -22,52 +22,33 @@
                         </a> 
                         <div class="collapse navbar-collapse" id="my-nav">
 
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#"><i class="fa fa-home"></i> Accueil</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-adn"></i> Services</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-user-circle-o"></i> Pièces</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-info-circle"></i> A propos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-picture-o"></i> Galeris</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-phone"></i> Contact</a>
-                                </li>
-                            </ul>
+                            <?php
+                                if ( has_nav_menu( 'primary-menu' ) ) : ?>
+                                <?php 
+                                    wp_nav_menu ( array (
+                                        'theme_location' => 'primary-menu' ,
+                                        'container'       => 'ul',
+                                        'menu_class' => 'navbar-nav ml-auto',
+                                        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                                    ) ); ?>
+                                <?php endif;
+                            ?>
                         </div>
                     </div><!-- end container -->
                 </nav><!-- en desktop menu -->
                 <!-- mobile menu -->
                 <div class="barMenuMobile">
                     <nav id="main-nav" class="mobile menu">
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fa fa-home"></i> Accueil</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-adn"></i> Services</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-user-circle-o"></i> Pièces</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-info-circle"></i> A propos</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-picture-o"></i> Galeris</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-phone"></i> Contact</a>
-                            </li>
-                        </ul>
+
+                        <?php
+                            if ( has_nav_menu( 'primary-menu' ) ) : ?>
+                            <?php 
+                                wp_nav_menu ( array (
+                                    'theme_location' => 'primary-menu' ,
+                                    'container'       => 'ul',
+                                ) ); ?>
+                            <?php endif;
+                        ?>
                     </nav>
                 </div>
                 <!-- end mobile menu -->
@@ -75,46 +56,42 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
-                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                                    </ol>
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img class="d-block m-auto" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
+                                <div class="content">
+                                    <div class="carousel-header">
+
+                                        <div class="slide-item">
+                                            <img class="d-block m-auto w-100" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
                                             <div class="caption">
-                                                <h1 class="ttr">Lorem, ipsum dolor.</h1>
-                                                <h2 class="sttr">Consectetur adipisicing</h2>
+                                                <h1 class="ttr">Lorem, ipsum dolor 1.</h1>
+                                                <h2 class="sttr">Consectetur adipisicing 1</h2>
                                             </div>
                                             <a href="#" class="btn-primary btn">Voir plus <i class="fa fa-plus"></i></a>
                                             <a href="#" class="btn-secondary btn">Contact</a>
                                         </div>
-                                        <div class="carousel-item">
-                                            <img class="d-block m-auto" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
+
+                                        <div class="slide-item">
+                                            <img class="d-block m-auto w-100" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
                                             <div class="caption">
-                                                <h1 class="ttr">Lorem, ipsum dolor.</h1>
-                                                <h2 class="sttr">Consectetur adipisicing</h2>
+                                                <h1 class="ttr">Lorem, ipsum dolor 2.</h1>
+                                                <h2 class="sttr">Consectetur adipisicing 2</h2>
                                             </div>
                                             <a href="#" class="btn-primary btn">Voir plus <i class="fa fa-plus"></i></a>
                                             <a href="#" class="btn-secondary btn">Contact</a>
                                         </div>
-                                        <div class="carousel-item">
-                                            <img class="d-block m-auto" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
+                                        <div class="slide-item">
+                                            <img class="d-block m-auto w-100" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
                                             <div class="caption">
-                                                <h1 class="ttr">Lorem, ipsum dolor.</h1>
-                                                <h2 class="sttr">Consectetur adipisicing</h2>
+                                                <h1 class="ttr">Lorem, ipsum dolor. 3</h1>
+                                                <h2 class="sttr">Consectetur adipisicing 3</h2>
                                             </div>
                                             <a href="#" class="btn-primary btn">Voir plus <i class="fa fa-plus"></i></a>
                                             <a href="#" class="btn-secondary btn">Contact</a>
                                         </div>
-                                        <div class="carousel-item">
-                                            <img class="d-block m-auto" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
+                                        <div class="slide-item">
+                                            <img class="d-block m-auto w-100" src="<?php echo get_template_directory_uri(); ?>/images/slide1.png" alt="">
                                             <div class="caption">
-                                                <h1 class="ttr">Lorem, ipsum dolor.</h1>
-                                                <h2 class="sttr">Consectetur adipisicing</h2>
+                                                <h1 class="ttr">Lorem, ipsum dolor. 4</h1>
+                                                <h2 class="sttr">Consectetur adipisicing 4</h2>
                                             </div>
                                             <a href="#" class="btn-primary btn">Voir plus <i class="fa fa-plus"></i></a>
                                             <a href="#" class="btn-secondary btn">Contact</a>

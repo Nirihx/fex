@@ -16,6 +16,15 @@
         labelBack: 'Back' // back buton
     });
 
+    // slide header
+    $('.carousel-header').slick({
+      dots: true,
+      arrows: false,
+      infinite: true,
+      speed: 500,
+      cssEase: 'linear'
+    });
+
     // slide sidebar
     $('.slideService').slick({
         dots: false,
@@ -49,9 +58,6 @@
               slidesToScroll: 1
             }
           }
-          // You can unslick at a given breakpoint now by adding:
-          // settings: "unslick"
-          // instead of a settings object
         ]
     });
     

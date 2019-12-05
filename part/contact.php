@@ -1,4 +1,4 @@
-<section class="section contact">
+<section id="contact" class="section contact">
     <div class="container">
         <div class="row">
             <div class="text-center col-12">
@@ -9,19 +9,37 @@
             </div>
             <div class="col-12">
                 <div class="content">
+
+                <?php $loop = new WP_Query( array( 'post_type' => 'contact', 'posts_per_page' => '1' ) ); ?>
+                <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+
                     <div class="adresse">
-                        <h2 class="sttr">Garage Sociefa</h2>
+                        <?php if( get_field('titre_contact') ): ?>
+                            <h2 class="sttr"><?php the_field('titre_contact'); ?></h2>
+                        <?php endif; ?>
 
                         <i class="fa fa-map-marker"></i>
-                        <p class="para">Lot BBIII 88 By-Pass Ankaraobato</p>
+                        <?php if( get_field('adresse_contact') ): ?>
+                            <p class="para"><?php the_field('adresse_contact'); ?></p>
+                        <?php endif; ?>
 
                         <i class="fa fa-phone"></i>
-                        <p class="para">+261 32 00 000 00</p>
-                        <p class="para">+261 33 00 000 00</p>
-                        <p class="para">+261 34 00 000 00</p>
+                        <?php if( have_rows('phone_contact') ): ?>
+                            <table class="table">
+                                <?php while( have_rows('phone_contact') ): the_row(); 
+                                    // vars
+                                    $numContact = get_sub_field('num_phone');
+                                ?>
+                                <p class="para"><?php echo $numContact; ?></p>
+                                
+                                <?php endwhile; ?>
+                            </table>
+                        <?php endif; ?>
 
                         <i class="fa fa-at"></i>
-                        <p class="para">sociefagarage@gmail.com</p>
+                        <?php if( get_field('mail_contact') ): ?>
+                            <p class="para"><?php the_field('mail_contact'); ?></p>
+                        <?php endif; ?>
                     </div>
                     <div class="form">
                         <form action="">
@@ -48,7 +66,10 @@
                             </div>
                         </form>
                     </div>
-                </div>
+
+                <?php endwhile; wp_reset_query(); ?>
+
+                </div> 
             </div>
         </div>
     </div>

@@ -155,7 +155,8 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
 
 
 //$end_wp_theme_tmp
-?><?php
+?>
+<?php
     function fex_register_assets() {
     
         // Déclarer jQuery
@@ -189,6 +190,28 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
     add_action( 'wp_enqueue_scripts', 'fex_register_assets' );
 
     function fex_register_post_types() {
+
+        // CPT Slide header
+        $labels = array(
+            'name' => 'Slide header',
+            'all_items' => 'Tous les Slide header',  // affiché dans le sous menu
+            'singular_name' => 'Slide',
+            'add_new_item' => 'Ajouter un Slide',
+            'edit_item' => 'Modifier le Slide',
+            'menu_name' => 'Slide header'
+        );
+    
+        $args = array(
+            'labels' => $labels,
+            'public' => true,
+            'show_in_rest' => true,
+            'has_archive' => true,
+            'supports' => array( 'title'),
+            'menu_position' => 5, 
+            'menu_icon' => 'dashicons-clipboard',
+        );
+    
+        register_post_type( 'slide', $args );
 	
         // CPT Services
         $labels = array(
@@ -210,7 +233,7 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
             'menu_icon' => 'dashicons-clipboard',
         );
     
-        register_post_type( 'Service', $args );
+        register_post_type( 'service', $args );
 
         // CPT Pieces
         $labels = array(
@@ -276,16 +299,16 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
             'menu_icon' => 'dashicons-admin-site',
         );
     
-        register_post_type( 'contact', $args );
+        register_post_type( 'contact', $args );        
 
-        // CPT Map
+        // CPT Qui sommes-nous
         $labels = array(
-            'name' => 'Map',
-            'all_items' => 'Tous les Maps',  // affiché dans le sous menu
-            'singular_name' => 'Map',
-            'add_new_item' => 'Ajouter un Map',
-            'edit_item' => 'Modifier le Map',
-            'menu_name' => 'Map'
+            'name' => 'Qui sommes-nous',
+            'all_items' => 'Tous',  // affiché dans le sous menu
+            'singular_name' => 'Qui sommes-nous',
+            'add_new_item' => 'Ajouter un Qui sommes-nous',
+            'edit_item' => 'Modifier le Qui sommes-nous',
+            'menu_name' => 'Qui sommes-nous'
         );
     
         $args = array(
@@ -295,13 +318,29 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
             'has_archive' => true,
             'supports' => array( 'title'),
             'menu_position' => 5, 
-            'menu_icon' => 'dashicons-location-alt',
+            'menu_icon' => 'dashicons-buddicons-buddypress-logo',
         );
     
-        register_post_type( 'map', $args );
-
+        register_post_type( 'qui-sommes-nous', $args );
         
     }
     add_action( 'init', 'fex_register_post_types' ); // Le hook init lance la fonction
 
     add_theme_support( 'post-thumbnails' );
+
+    function register_my_menus() {
+        register_nav_menus(
+            array(
+                'primary-menu' => __( 'Menu Principale' ),
+                'footer-menu' => __( 'Menu Footer' ),
+            )
+        );
+    }
+    add_action( 'init', 'register_my_menus' );
+
+    // Method 1: Filter.
+    // function my_acf_google_map_api( $api ){
+    //     $api['key'] = 'AIzaSyDheFmNsGKyyE5l9Uz3iB9BjcLKA6zf7mw';
+    //     return $api;
+    // }
+    // add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
