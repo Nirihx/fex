@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/slick.min.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/slick-theme.min.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/style.css">
+    <link href="https://unpkg.com/nanogallery2/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
     <?php wp_head(); ?>
 </head>
 <body>

@@ -71,6 +71,7 @@
     </div>
     <?php wp_footer(); ?>
     
+    <script type="text/javascript" src="https://unpkg.com/nanogallery2/dist/jquery.nanogallery2.min.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/js/hc-offcanvas-nav.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/js/slick.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script> -->

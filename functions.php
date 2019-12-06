@@ -322,6 +322,28 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
         );
     
         register_post_type( 'qui-sommes-nous', $args );
+
+        // CPT Galerie photo
+        $labels = array(
+            'name' => 'Galerie Photo',
+            'all_items' => 'Tous les Galeries Photos',  // affiché dans le sous menu
+            'singular_name' => 'Galerie',
+            'add_new_item' => 'Ajouter un Galerie',
+            'edit_item' => 'Modifier le Galerie',
+            'menu_name' => 'Galerie Photo'
+        );
+    
+        $args = array(
+            'labels' => $labels,
+            'public' => true,
+            'show_in_rest' => true,
+            'has_archive' => true,
+            'supports' => array( 'title'),
+            'menu_position' => 5, 
+            'menu_icon' => 'dashicons-format-gallery',
+        );
+    
+        register_post_type( 'galerie', $args );
         
     }
     add_action( 'init', 'fex_register_post_types' ); // Le hook init lance la fonction
