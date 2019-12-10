@@ -90,9 +90,26 @@
     $('textarea.form-control').on('focus', function(){
         $('textarea.form-control').css('height', '150px');
     }), 1000;
+
+    $('[data-fancybox="images"]').fancybox({
+      afterLoad : function(instance, current) {
+          var pixelRatio = window.devicePixelRatio || 1;
+  
+          if ( pixelRatio > 1.5 ) {
+              current.width  = current.width  / pixelRatio;
+              current.height = current.height / pixelRatio;
+          }
+      }
+  });
     
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    });
+    // $(function () {
+    //     $('[data-toggle="tooltip"]').tooltip()
+    // });
+
+    // $( ".modal" ).each(function() {
+    //   for (let idM = 0; idM < $(this).length; idM++) {        
+    //     console.log($(this)[idM]);      
+    //   }
+    // });   
 
 })(jQuery);

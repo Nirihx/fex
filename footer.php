@@ -7,10 +7,12 @@
                             <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
                             <div class="conTtr">
-                                <h4 class="ttr">Adresse</h4>
+                                <?php if( get_field('titre_contact') ): ?>
+                                    <h4 class="ttr"><?php the_field('titre_contact'); ?></h4>
+                                <?php endif; ?>
                             </div>
-                            <?php if( get_field('titre_contact') ): ?>
-                                <p class="para"><i class="fa fa-map-marker"></i> <?php the_field('titre_contact'); ?> </p>
+                            <?php if( get_field('adresse_contact') ): ?>
+                                <p class="para"><i class="fa fa-map-marker"></i> <?php the_field('adresse_contact'); ?> </p>
                             <?php endif; ?>
 
                             <?php if( have_rows('phone_contact') ): ?>
@@ -30,7 +32,7 @@
                         
                         </div>
 
-                        <div class="col-md-4">
+                        <div id="aPropos" class="col-md-4">
 
                             <?php $loop = new WP_Query( array( 'post_type' => 'qui-sommes-nous', 'posts_per_page' => '1' ) ); ?>
                             <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
@@ -71,10 +73,11 @@
     </div>
     <?php wp_footer(); ?>
     
-    <script type="text/javascript" src="https://unpkg.com/nanogallery2/dist/jquery.nanogallery2.min.js"></script>
+    <!-- nanogallery2 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/js/hc-offcanvas-nav.js"></script>
-    <script src="<?php echo get_template_directory_uri(); ?>/js/slick.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script> -->
+    <!-- <script src="<?php echo get_template_directory_uri(); ?>/js/slick.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/js/app.js"></script>
 </body>
 </html>

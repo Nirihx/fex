@@ -1,17 +1,41 @@
-<?php $loop = new WP_Query( array( 'post_type' => 'galerie', 'posts_per_page' => '1' ) ); ?>
-<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+<section class="section galerie">
+    <div class="container">
+        <div class="row">
+            <div class="text-center col-12">
+                <h1 class="ttr">
+                    <small class="small">Galerie</small>
+                    Photo
+                </h1>
+            </div>
+            <div class="col-12">
+                <div class="galeriePhoto">
 
-    <?php 
-        $images = get_field('image_galerie');
-        $size = 'full'; // (thumbnail, medium, large, full or custom size)
-    if( $images ): ?>
-        <ul>
-            <?php foreach( $images as $image_id ): ?>
-                <li>
-                    <?php echo wp_get_attachment_image( $image_id, $size ); ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
+                    <?php $loop = new WP_Query( array( 'post_type' => 'galerie', 'posts_per_page' => '10' ) ); ?>
+                    <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
-<?php endwhile; wp_reset_query(); ?>
+                        <?php if( have_rows('galerie_photo') ): ?>
+                        
+                            <?php while( have_rows('galerie_photo') ): the_row(); 
+                                // vars
+                                $largeImg = get_sub_field('large_image');
+                                $vignetteImg = get_sub_field('vignette_image');
+                                $captionImg = get_sub_field('caption_image');
+                            ?>
+                                <div class="items">
+                                    <a href="<?php echo esc_url($largeImg['url']); ?>" data-fancybox="images" data-caption="<?php echo $captionImg; ?>">
+                                        <img src="<?php echo esc_url($vignetteImg['url']); ?>" alt="" />
+                                    </a>
+                                </div>
+                            
+                            <?php endwhile; ?>
+                        <?php endif; ?>  
+
+
+                    <?php endwhile; wp_reset_query(); ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end service -->
