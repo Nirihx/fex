@@ -21,7 +21,10 @@
 
 # Plugins wp
 
-[Advanced Custom Fields](https://www.advancedcustomfields.com/) Version 5.8.1
+* [Advanced Custom Fields](https://www.advancedcustomfields.com/) Version 5.8.1
+* [Contact Form 7](https://contactform7.com/) Version 5.1.6
+* [WP-SCSS](https://github.com/ConnectThink/WP-SCSS) Version 1.2.4
+* [Yoast SEO](https://yoa.st/1uj) Version 12.6.2
 
 # Autres librairie javascript
 
