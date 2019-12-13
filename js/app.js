@@ -110,6 +110,13 @@
     //   for (let idM = 0; idM < $(this).length; idM++) {        
     //     console.log($(this)[idM]);      
     //   }
-    // });   
+    // });  
+    $(document).on("scroll", function(){
+      if($(document).scrollTop() > 80){
+          $("#nav-desk").addClass("hBlock");
+      }else{
+          $("#nav-desk").removeClass("hBlock");
+      }     
+  }); 
 
 })(jQuery);

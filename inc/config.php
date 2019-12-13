@@ -17,11 +17,10 @@
         wp_enqueue_script( 
             'jquery', 
             'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', 
-//             get_template_directory_uri() . '/js/jquery-3.3.1.min.js', 
             false, 
             '3.3.1', 
             true 
-        );        
+        );
         
         // Déclarer bootstrap js
         wp_enqueue_script( 
@@ -31,14 +30,14 @@
             '4.2.1', 
             true
         );
-
-        // Déclarer un autre fichier CSS
-        // wp_enqueue_style( 
-        //     'fex', 
-        //     get_template_directory_uri() . './css/style.css',
-        //     array(), 
-        //     '1.0'
-        // );
+        
+//         // Déclarer un autre fichier CSS
+//         wp_enqueue_style( 
+//             'fex', 
+//             get_template_directory_uri() . './css/style.css',
+//             array(), 
+//             '1.0'
+//         );
 
         // Déclarer style.css à la racine du thème
         wp_enqueue_style( 
@@ -46,7 +45,8 @@
             get_stylesheet_uri(), 
             array(), 
             '1.0'
-        );                
+        );     
+        
     }
     add_action( 'wp_enqueue_scripts', 'fex_register_assets' );
 
@@ -59,16 +59,28 @@
     add_filter('pre_site_transient_update_plugins', create_function('$a', "return null;"));
 
     // masquer les autre menu de l'admin
-    function remove_menu_items() {
-        global $menu;
-        $restricted = array(__('Posts'), __('Pages'), __('Comments'), __('Plugins'), __('Links'), __('Media'), __('Tools'), __('Users'));
-        end ($menu);
-        while (prev($menu)) {
-            $value = explode(' ',$menu[key($menu)][0]);
-            if(in_array($value[0] != NULL?$value[0]:"" , $restricted)) {
-                unset($menu[key($menu)]);}
-        }
-    }
-    add_action('admin_menu', 'remove_menu_items');
+    if ( !current_user_can('manage_options' ) ){
+		function kodex_admin_remove_menus(){
+			remove_menu_page('index.php');
+			remove_menu_page('edit.php');
+			remove_menu_page('upload.php');
+			remove_menu_page('edit.php?post_type=page');
+			remove_menu_page('edit-comments.php');
+			remove_menu_page('themes.php');
+			remove_menu_page('plugins.php');
+			remove_menu_page('users.php');
+			remove_menu_page('tools.php');
+			remove_menu_page('options-general.php');
+			remove_menu_page( 'wpcf7' );
+		}
+		add_action('admin_menu', 'kodex_admin_remove_menus');
 
-    add_theme_support( 'post-thumbnails' );
+		// masquer ACF
+		add_filter('acf/settings/show_admin', '__return_false');
+
+		add_action( 'admin_menu', 'adjust_the_wp_menu', 999 );
+		function adjust_the_wp_menu() {
+			remove_submenu_page( 'edit.php', 'widgets.php' );
+		}
+    }
+    

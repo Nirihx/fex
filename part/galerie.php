@@ -18,12 +18,12 @@
                             <?php while( have_rows('galerie_photo') ): the_row(); 
                                 // vars
                                 $largeImg = get_sub_field('large_image');
-                                $vignetteImg = get_sub_field('vignette_image');
+                                // $vignetteImg = get_sub_field('vignette_image');
                                 $captionImg = get_sub_field('caption_image');
                             ?>
                                 <div class="items">
                                     <a href="<?php echo esc_url($largeImg['url']); ?>" data-fancybox="images" data-caption="<?php echo $captionImg; ?>">
-                                        <img src="<?php echo esc_url($vignetteImg['url']); ?>" alt="" />
+                                        <img src="<?php echo esc_url($largeImg['url']); ?>" alt="" />
                                     </a>
                                 </div>
                             

@@ -58,56 +58,53 @@
 						</div>
 					</div><!-- end card -->
 				<!-- Modal -->
-				<div class="modal fade" id="<?php echo $nomPiece.get_the_ID(); ?>" tabindex="-1" role="dialog" aria-labelledby="modalPiecesLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-						
-							<div class="modal-body">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-								</button>
-								<?php 
-								$image = get_field('piece_image');
-								if( !empty( $image ) ): ?>
-									<img class="picPiece" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-								<?php endif; ?>
-
-								
-
-								
-								<?php if( have_rows('description_piece') ): ?>
-									<table class="table table-bordered">
-										<tr>
-											<th colspan="3">
-												<?php if( get_field('nom_du_piece') ): ?>
-													<h3 class="sttr"><?php the_field('nom_du_piece'); ?></h3>
-												<?php endif; ?>
-											</th>
-										</tr>
-										<?php while( have_rows('description_piece') ): the_row(); 
-											// vars
-											$libeller = get_sub_field('libeller');
-											$content = get_sub_field('content');
-										?>
-										<tr>
-											<td><?php echo $libeller; ?></td>
-											<td><?php echo $content; ?></td>
-										</tr>
-										
-										<?php endwhile; ?>
-									</table>
-								<?php endif; ?>                      
-								<div class="modal-footer">
-									<?php if( get_field('prix_du_piece') ): ?>
-										<span class="price"><?php the_field('prix_du_piece'); ?> Ar</span>
+					<div class="modal fade" id="<?php echo $nomPiece.get_the_ID(); ?>" tabindex="-1" role="dialog" aria-labelledby="modalPiecesLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+							
+								<div class="modal-body">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+									</button>
+									<?php 
+									$image = get_field('piece_image');
+									if( !empty( $image ) ): ?>
+										<img class="picPiece" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
 									<?php endif; ?>
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-								</div>
-							</div> <!-- end modal-body -->                        
+									
+									<?php if( have_rows('description_piece') ): ?>
+										<table class="table table-bordered">
+											<tr>
+												<th colspan="3">
+													<?php if( get_field('nom_du_piece') ): ?>
+														<h3 class="sttr"><?php the_field('nom_du_piece'); ?></h3>
+													<?php endif; ?>
+												</th>
+											</tr>
+											<?php while( have_rows('description_piece') ): the_row(); 
+												// vars
+												$libeller = get_sub_field('libeller');
+												$content = get_sub_field('content');
+											?>
+											<tr>
+												<td><?php echo $libeller; ?></td>
+												<td><?php echo $content; ?></td>
+											</tr>
+											
+											<?php endwhile; ?>
+										</table>
+									<?php endif; ?>                      
+									<div class="modal-footer">
+										<?php if( get_field('prix_du_piece') ): ?>
+											<span class="price"><?php the_field('prix_du_piece'); ?> Ar</span>
+										<?php endif; ?>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+									</div>
+								</div> <!-- end modal-body -->                        
 
-						</div> <!-- end modal-content -->
-					</div> <!-- end modal-dialog -->
-				</div> <!-- end modal -->
+							</div> <!-- end modal-content -->
+						</div> <!-- end modal-dialog -->
+					</div> <!-- end modal -->
 				</div><!-- end itemCard -->
 
 			<?php endwhile; wp_reset_query(); ?>
