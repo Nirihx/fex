@@ -15,6 +15,9 @@
     <?php wp_head(); ?>
 </head>
 <body>
+    <div id="chargement">
+        <img src="<?php echo get_template_directory_uri(); ?>/img/loader.gif" alt="">
+    </div>
     <div class="container-fluid">
         <div class="row">
             <header class="header">
